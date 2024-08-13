@@ -19,10 +19,12 @@ jobs:
             HOST: ${{ secrets.HOST }}
             
         run: |
+          # Write the private key to a file and set permissions
           echo "$PRIVATE_KEY" > private_key
           chmod 600 private_key
 
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} << 'EOF'
+          # Execute commands on the remote server
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} << EOF
             echo "Deploying application..."
             cd ci
             ./actions.sh ${HOST}
