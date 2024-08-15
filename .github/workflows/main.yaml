@@ -6,7 +6,7 @@ on:
 
 jobs:
   Deploy:
-    name: Deploy to EC2-VM
+    name: Deploy to EC2-VM-1
     runs-on: ubuntu-latest
 
     steps:
